@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { PostsController } from './posts/posts.controller';
+import { MongooseModule } from "@nestjs/mongoose";
+import { PostsModule } from './posts/posts.module';
 
 @Module({
-  imports: [],
-  controllers: [AppController, PostsController],
+  imports: [MongooseModule.forRoot('mongodb://root:rootpassword@localhost:27017/nest_kgk_testing?authSource=admin'), PostsModule],
+  controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
